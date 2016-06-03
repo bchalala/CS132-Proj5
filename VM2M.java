@@ -115,7 +115,7 @@ public class VM2M {
 				System.out.println(ds.ident + ":");
 				if (ds.values != null) {
 					for (VOperand.Static v: ds.values) {
-						System.out.println("\t" + v.toString().substring(1));
+						System.out.println("  " + v.toString().substring(1));
 					}
 				}
 				System.out.println("");
@@ -125,31 +125,31 @@ public class VM2M {
 
 	public static void printInitText() {
 		String initSeg = ".text\n\n";
-		initSeg += "\tjal Main\n";
-		initSeg += "\tli $v0 10\n";
-		initSeg += "\tsyscall\n";
+		initSeg += "  jal Main\n";
+		initSeg += "  li $v0 10\n";
+		initSeg += "  syscall\n";
 		System.out.println(initSeg);
 	}
 
 	public static void printPostamble() {
 		String pa = "_print:\n";
-  		pa += "\tli $v0 1   # syscall: print integer\n";
-  		pa += "\tsyscall\n";
-  		pa += "\tla $a0 _newline\n";
-  		pa += "\tli $v0 4   # syscall: print string\n";
-  		pa += "\tsyscall\n";
-  		pa += "\tjr $ra\n";
+  		pa += "  li $v0 1   # syscall: print integer\n";
+  		pa += "  syscall\n";
+  		pa += "  la $a0 _newline\n";
+  		pa += "  li $v0 4   # syscall: print string\n";
+  		pa += "  syscall\n";
+  		pa += "  jr $ra\n";
 
   		pa += "_error:\n";
-  		pa += "\tli $v0 4   # syscall: print string\n";
-  		pa += "\tsyscall\n";
-  		pa += "\tli $v0 10  # syscall: exit\n";
-  		pa += "\tsyscall\n";
+  		pa += "  li $v0 4   # syscall: print string\n";
+  		pa += "  syscall\n";
+  		pa += "  li $v0 10  # syscall: exit\n";
+  		pa += "  syscall\n";
 
   		pa += "_heapAlloc:\n";
-  		pa += "\tli $v0 9   # syscall: sbrk\n";
-  		pa += "\tsyscall\n";
-  		pa += "\tjr $ra\n";
+  		pa += "  li $v0 9   # syscall: sbrk\n";
+  		pa += "  syscall\n";
+  		pa += "  jr $ra\n";
 
   		pa += ".data\n";
   		pa += ".align 0\n";

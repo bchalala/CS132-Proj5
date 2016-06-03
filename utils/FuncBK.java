@@ -31,17 +31,17 @@ public class FuncBK {
 		addLine("sw $ra -4($sp)");
 		addLine("move $fp $sp");
 
-		// Make space for the ra, fp, local, and out.
-		stackspace = (local + out + 2)*4;
-		addLine("subu $sp $sp " + stackspace);
-
 		in = vfunc.stack.in;
 		out = vfunc.stack.out;
 		local = vfunc.stack.local;
+
+		// Make space for the ra, fp, local, and out.
+		stackspace = (local + out + 2)*4;
+		addLine("subu $sp $sp " + stackspace);
 	}
 
 	public void addLine(String line) {
-		body = body + "\t" + line + "\n";
+		body = body + "  " + line + "\n";
 	}
 
 	public void addLineNoTab(String line) {
